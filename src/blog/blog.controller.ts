@@ -51,5 +51,5 @@ export class BlogController {
         return article;
     }
     // NB: implementer le contenu des fonctions precedentes dans le service BlogService 
-    // acces a la base de donne TypeORM : object relationnal Model  ok commit
+    // acces a la base de donne TypeORM : object relationnal Model  ok commit retest
 }
