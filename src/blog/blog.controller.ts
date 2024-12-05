@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Logger, NotFoundException, Param, Post, Put } from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { articleDto } from 'src/dtos/article.dto';
+import { commentDto } from 'src/dtos/comment.dto';
 
 @Controller('blog')
 export class BlogController {
@@ -8,7 +9,7 @@ export class BlogController {
     constructor(private readonly blogService: BlogService) { }
     @Get()
     getAll() {
-        Logger.log('get All articles', 'BlogController'); // Ceci permet d'afficehr un message dans le terminale quand  getAll() est appele (le second param 'BlogController' apparait en jaune)
+        Logger.log('get All articles', 'BlogController'); // Ceci permet d'afficher un message dans le terminale quand  getAll() est appele (le second param 'BlogController' apparait en jaune)
         return this.blogService.getArticles();
     }
     @Get(':articleId')
@@ -49,6 +50,16 @@ export class BlogController {
             throw new HttpException('not founded to deleted', HttpStatus.NOT_FOUND);
         }
         return article;
+    }
+    @Post('comment/:articleId')
+    async addComment(@Param('articleId') articleId, @Body() commentDto: commentDto){
+        Logger.log('adding comment', 'BlogController');
+        const comment = await this.blogService.addComment(articleId,commentDto);
+        if(!comment){
+            throw new HttpException('Not created comment', HttpStatus.NOT_MODIFIED);
+        }
+        return comment;
+            
     }
     // NB: implementer le contenu des fonctions precedentes dans le service BlogService 
     // acces a la base de donne TypeORM : object relationnal Model  ok commit retest
