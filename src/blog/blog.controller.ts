@@ -61,6 +61,10 @@ export class BlogController {
         return comment;
             
     }
+    @Delete()
+    deleteAll() {
+        return "Do you delete all articles ?";
+    }
     // NB: implementer le contenu des fonctions precedentes dans le service BlogService 
     // acces a la base de donne TypeORM : object relationnal Model  ok commit retest
 }
