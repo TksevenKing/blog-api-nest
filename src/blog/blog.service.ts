@@ -14,7 +14,7 @@ export class BlogService {
         @InjectRepository(articleEntity)
         // Pour injecter une dependance, elle doit etre de type private
         private readonly articlesRepository: Repository<articleEntity>,  // entre <> on donne les entitee qu'on va user et ceci permet de les modifier, ajouter des elts et les creer
-        // c'est la declaration de ce "articlesRepository" qui nous permet d'utiliser les fonctiopns predefini comme "findOne()", "findAll()",etc...
+        // c'est la declaration de ce "articlesRepository" qui nous permet d'utiliser les fonctions predefini comme "findOne()", "findAll()",etc...
         @InjectRepository(CommentEntity)
         private readonly commentRepository: Repository<CommentEntity>
     ) { }
